@@ -1,0 +1,7 @@
+{
+  "spec": "./src",
+  "extension": ["ts"],
+  "require": ["./src/test-env.js"],
+  "recursive": true,
+  "fullTrace": true
+}
