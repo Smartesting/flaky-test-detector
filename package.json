@@ -3,6 +3,7 @@
   "name": "@smartesting/flak-test-detector",
   "description": "KISS approach for flaky test detection",
   "scripts": {
+    "prepare": "husky install",
     "build": "tsc",
     "test": "mocha",
     "test:samples": "mocha --config .mocharc-samples.json"
@@ -11,7 +12,10 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.18",
     "assert": "^2.0.0",
+    "husky": "^8.0.3",
     "mocha": "^10.2.0",
+    "prettier": "^2.8.2",
+    "pretty-quick": "^3.1.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   }
