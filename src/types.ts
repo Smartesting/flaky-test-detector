@@ -1,6 +1,6 @@
 export enum Status {
-  PASSED,
-  FAILED,
+  PASSED = "passed",
+  FAILED = "failed",
 }
 
 export type Test = {

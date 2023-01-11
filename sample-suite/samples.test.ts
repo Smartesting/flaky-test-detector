@@ -13,4 +13,6 @@ describe("Sample suite", () => {
     const rand = Math.random();
     assert(rand >= 0.5);
   });
+
+  it.skip("is a test that is not executed", () => {});
 });
