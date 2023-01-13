@@ -12,6 +12,7 @@ export type Options = {
   repeat: string;
   runTests: string;
   testOutputFile: string;
+  exitCode: string;
 };
 
 export type CommandFactory = (

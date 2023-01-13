@@ -22,7 +22,7 @@ export default function run() {
       } else {
         console.log(`Found ${flakytestsCount} flaky tests`);
         console.log(flakyTests.map((testName) => ` - ${testName}`).join("\n"));
-        exit(1);
+        exit(parseInt(options.exitCode));
       }
     }
   );
