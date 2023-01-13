@@ -21,6 +21,7 @@ describe("commandFactory", () => {
     const command = commandFactory(
       {
         repeat: "",
+        exitCode: "",
         runTests: `./bin/test-utils/sleep 200 > ${testOutputFile}`,
         testOutputFile,
       },
@@ -40,6 +41,7 @@ describe("commandFactory", () => {
     const command = commandFactory(
       {
         repeat: "",
+        exitCode: "",
         runTests: `./bin/test-utils/sleep 200 > ${testOutputFile}`,
         testOutputFile,
       },
@@ -62,6 +64,7 @@ describe("commandFactory", () => {
     const command = commandFactory(
       {
         repeat: "",
+        exitCode: "",
         runTests: `./bin/test-utils/sleep 200 > ${testOutputFile}`,
         testOutputFile,
       },
