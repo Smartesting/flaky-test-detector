@@ -1,7 +1,7 @@
-import { Test } from "./types";
+import { Command, Test } from "./types";
 
 export default async function executeTests(
-  command: () => Promise<ReadonlyArray<Test>>,
+  command: Command,
   repeat: number
 ): Promise<ReadonlyArray<Test>> {
   const tests: Test[] = [];

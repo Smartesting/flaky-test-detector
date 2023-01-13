@@ -1,13 +1,11 @@
-import { Status, Test } from "./types";
+import { FlakyTestDetector, Status, Test } from "../types";
 
-export default function detectFlakyTests(
-  tests: ReadonlyArray<Test>
-): ReadonlyArray<string> {
+const basic: FlakyTestDetector = (tests: ReadonlyArray<Test>) => {
   const statusByName = groupTestStatusesByName(tests);
   return Object.entries(statusByName)
     .filter(([_name, statuses]) => uniq(statuses).length > 1)
     .map(([name]) => name);
-}
+};
 
 function groupTestStatusesByName(tests: ReadonlyArray<Test>): {
   [key: string]: Status[];
@@ -26,3 +24,5 @@ function groupTestStatusesByName(tests: ReadonlyArray<Test>): {
 function uniq<T>(array: T[]): T[] {
   return Array.from(new Set(array));
 }
+
+export default basic;

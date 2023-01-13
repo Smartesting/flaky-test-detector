@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+const sleepMs = parseInt(process.argv[2]);
+new Promise((resolve) => {
+  setTimeout(() => {
+    console.log(`Waited for ${sleepMs}ms`);
+    resolve();
+  }, sleepMs);
+});

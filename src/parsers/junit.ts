@@ -1,10 +1,8 @@
-import { Status, Test } from "../types";
+import { ReportParser, Status, Test } from "../types";
 import { parse, TestCase, TestSuite, TestSuites } from "junit2json";
 
-export default async function junit(
-  xmlString: string
-): Promise<ReadonlyArray<Test>> {
-  const testSuites = await parse(xmlString);
+const junit: ReportParser = async (junitReport: string) => {
+  const testSuites = await parse(junitReport);
   if (!testSuites) throw new Error("Invalid Junit XML");
 
   if (isTestSuite(testSuites)) {
@@ -17,7 +15,7 @@ export default async function junit(
     (tests, testSuite) => tests.concat(...extractTests(testSuite, testSuites)),
     []
   );
-}
+};
 
 function extractTests(
   testSuite: TestSuite,
@@ -49,3 +47,5 @@ function validSegment(segment: string | undefined) {
 function isTestSuite(testSuite: unknown): testSuite is TestSuite {
   return (testSuite as TestSuite).testcase !== undefined;
 }
+
+export default junit;
