@@ -37,7 +37,10 @@ export type FlakyTestDetector = (
 
 export interface Reporter {
   testSuiteStarted: (index: number) => Promise<void>;
-  testSuiteEnded: (index: number) => Promise<void>;
+  testSuiteEnded: (
+    index: number,
+    statuses: ReadonlyArray<Status>
+  ) => Promise<void>;
   flakyTestsFound: (flakytests: ReadonlyArray<Test>) => Promise<void>;
 }
 

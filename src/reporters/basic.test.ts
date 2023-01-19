@@ -1,5 +1,5 @@
 import assert from "assert";
-import { Logger, Test } from "../types";
+import { Logger, Status, Test } from "../types";
 import BasicReporter from "./basic";
 
 describe("reporters", () => {
@@ -34,9 +34,15 @@ describe("reporters", () => {
 
     describe("testSuiteEnded", () => {
       it("logs a message about test starting", async () => {
-        await reporter.testSuiteEnded(1);
+        await reporter.testSuiteEnded(1, [
+          Status.PASSED,
+          Status.FAILED,
+          Status.PASSED,
+        ]);
 
-        assert.deepStrictEqual(logged, ["Test suite #1 ended"]);
+        assert.deepStrictEqual(logged, [
+          "Test suite #1 ended: 2 passed, 1 failed",
+        ]);
       });
     });
 
@@ -46,7 +52,7 @@ describe("reporters", () => {
         it("logs a message about flaky tests", async () => {
           await reporter.flakyTestsFound(flakyTests);
 
-          assert.deepStrictEqual(logged, ["No flaky tests found"]);
+          assert.deepStrictEqual(logged, ["\nNo flaky tests found"]);
         });
       });
 
@@ -57,7 +63,7 @@ describe("reporters", () => {
           await reporter.flakyTestsFound(flakyTests);
 
           assert.deepStrictEqual(errored, [
-            "Found 2 flaky tests",
+            "\nFound 2 flaky tests",
             " - test 10",
             " - test 23",
           ]);
