@@ -1,7 +1,7 @@
 import assert from "assert";
 import fs from "fs";
 import path from "path";
-import { Status, Test } from "./types";
+import { Status, TestExecution } from "./types";
 import commandFactory from "./commandFactory";
 
 describe("commandFactory", () => {
@@ -56,8 +56,8 @@ describe("commandFactory", () => {
   });
 
   it("returns whatever tests have been found by the reportParser", async () => {
-    const test: Test = {
-      name: "My test",
+    const testExecution: TestExecution = {
+      test: { name: "My test" },
       status: Status.PASSED,
     };
 
@@ -69,11 +69,11 @@ describe("commandFactory", () => {
         testOutputFile,
       },
       async () => {
-        return [test];
+        return [testExecution];
       }
     );
 
-    const tests = await command();
-    assert.deepStrictEqual(tests, [test]);
+    const testExecutions = await command();
+    assert.deepStrictEqual(testExecutions, [testExecution]);
   });
 });

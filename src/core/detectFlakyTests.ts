@@ -19,8 +19,6 @@ export default async function detectFlakyTests(
   const tests = await serial(command, parseInt(options.repeat), reporter);
   const flakyTests = flakyTestDetector(tests);
 
-  if (flakyTests.length > 0) {
-    reporter.flakyTestsFound(flakyTests);
-    throw new Error("Flaky tests found");
-  }
+  reporter.flakyTestsFound(flakyTests);
+  if (flakyTests.length > 0) throw new Error("Flaky tests found");
 }

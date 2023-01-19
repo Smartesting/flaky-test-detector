@@ -43,7 +43,7 @@ describe("testExecutors", () => {
           executions += 1;
           return [
             {
-              name: "My test",
+              test: { name: "My test" },
               status: executions % 2 ? Status.PASSED : Status.FAILED,
             },
           ];
@@ -53,15 +53,15 @@ describe("testExecutors", () => {
       );
       assert.deepStrictEqual(tests, [
         {
-          name: "My test",
+          test: { name: "My test" },
           status: Status.PASSED,
         },
         {
-          name: "My test",
+          test: { name: "My test" },
           status: Status.FAILED,
         },
         {
-          name: "My test",
+          test: { name: "My test" },
           status: Status.PASSED,
         },
       ]);

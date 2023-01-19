@@ -1,5 +1,5 @@
 import assert from "assert";
-import { Logger } from "../types";
+import { Logger, Test } from "../types";
 import BasicReporter from "./basic";
 
 describe("reporters", () => {
@@ -42,7 +42,7 @@ describe("reporters", () => {
 
     describe("flakyTestsFound", () => {
       context("when no flaky tests are found", () => {
-        const flakyTests: string[] = [];
+        const flakyTests: Test[] = [];
         it("logs a message about flaky tests", async () => {
           await reporter.flakyTestsFound(flakyTests);
 
@@ -51,7 +51,7 @@ describe("reporters", () => {
       });
 
       context("when flaky tests are found", () => {
-        const flakyTests: string[] = ["test 10", "test 23"];
+        const flakyTests: Test[] = [{ name: "test 10" }, { name: "test 23" }];
 
         it("logs an error with the number of flaky tests found and list their names", async () => {
           await reporter.flakyTestsFound(flakyTests);

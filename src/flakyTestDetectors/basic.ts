@@ -1,24 +1,28 @@
-import { FlakyTestDetector, Status, Test } from "../types";
+import { ArrayMultimap } from "@teppeis/multimaps";
+import { FlakyTestDetector, Status, Test, TestExecution } from "../types";
 
-const basic: FlakyTestDetector = (tests) => {
-  const statusByName = groupTestStatusesByName(tests);
-  return Object.entries(statusByName)
-    .filter(([_name, statuses]) => uniq(statuses).length > 1)
-    .map(([name]) => name);
+const basic: FlakyTestDetector = (testExecutions) => {
+  const statusesByJsonTests = groupStatusesByJsonTest(testExecutions);
+  const flakyTests: Test[] = [];
+
+  for (const jsonTest of statusesByJsonTests.keys()) {
+    const statuses = statusesByJsonTests.get(jsonTest);
+    if (uniq(statuses).length > 1) {
+      flakyTests.push(JSON.parse(jsonTest));
+    }
+  }
+  return flakyTests;
 };
 
-function groupTestStatusesByName(tests: ReadonlyArray<Test>): {
-  [key: string]: Status[];
-} {
-  const statusesByName: { [key: string]: Status[] } = {};
-  for (const test of tests) {
-    if (!statusesByName[test.name]) {
-      statusesByName[test.name] = [];
-    }
-    statusesByName[test.name].push(test.status);
+function groupStatusesByJsonTest(testExecutions: ReadonlyArray<TestExecution>) {
+  const statusesByTest = new ArrayMultimap<string, Status>();
+  for (const testExecution of testExecutions) {
+    statusesByTest.put(
+      JSON.stringify(testExecution.test),
+      testExecution.status
+    );
   }
-
-  return statusesByName;
+  return statusesByTest;
 }
 
 function uniq<T>(array: T[]): T[] {

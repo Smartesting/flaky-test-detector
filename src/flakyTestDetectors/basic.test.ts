@@ -4,46 +4,54 @@ import { Status } from "../types";
 
 describe("flakyTestDetectors", () => {
   describe("basic", () => {
+    const name = "my test";
+    const test1 = { name };
+    const test2 = { name };
+
     it("returns an empty list when no tests are provided", () => {
       const flakyTests = basic([]);
 
       assert.deepStrictEqual(flakyTests, []);
     });
 
-    context("when two tests have the same name but different statuses", () => {
-      const name = "my test";
-      it("returns the test name", () => {
-        const flakyTests = basic([
-          {
-            name,
-            status: Status.FAILED,
-          },
-          {
-            name,
-            status: Status.PASSED,
-          },
-        ]);
+    context(
+      "when two tests executions for the same test have different statuses",
+      () => {
+        it("returns the test", () => {
+          const flakyTests = basic([
+            {
+              test: test1,
+              status: Status.FAILED,
+            },
+            {
+              test: test2,
+              status: Status.PASSED,
+            },
+          ]);
 
-        assert.deepStrictEqual(flakyTests, [name]);
-      });
-    });
+          assert.deepStrictEqual(flakyTests, [test1]);
+        });
+      }
+    );
 
-    context("two tests have the same name and the same statuses", () => {
-      const name = "my test";
-      it("does not return the test name", () => {
-        const flakyTests = basic([
-          {
-            name,
-            status: Status.PASSED,
-          },
-          {
-            name,
-            status: Status.PASSED,
-          },
-        ]);
+    context(
+      "when two tests executions for the same test have the same statuses",
+      () => {
+        it("does not return the test", () => {
+          const flakyTests = basic([
+            {
+              test: test1,
+              status: Status.PASSED,
+            },
+            {
+              test: test2,
+              status: Status.PASSED,
+            },
+          ]);
 
-        assert.deepStrictEqual(flakyTests, []);
-      });
-    });
+          assert.deepStrictEqual(flakyTests, []);
+        });
+      }
+    );
   });
 });

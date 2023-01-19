@@ -1,5 +1,5 @@
-import { ReportParser, Status, Test } from "../types";
-import { parse, TestCase, TestSuite, TestSuites } from "junit2json";
+import { ReportParser, Status, TestExecution } from "../types";
+import { parse, TestSuite, TestSuites } from "junit2json";
 
 const junit: ReportParser = async (junitReport: string) => {
   const testSuites = await parse(junitReport);
@@ -11,7 +11,7 @@ const junit: ReportParser = async (junitReport: string) => {
 
   if (!testSuites.testsuite) return [];
 
-  return testSuites.testsuite.reduce<Test[]>(
+  return testSuites.testsuite.reduce<TestExecution[]>(
     (tests, testSuite) => tests.concat(...extractTests(testSuite, testSuites)),
     []
   );
@@ -20,28 +20,21 @@ const junit: ReportParser = async (junitReport: string) => {
 function extractTests(
   testSuite: TestSuite,
   testSuites?: TestSuite
-): ReadonlyArray<Test> {
+): ReadonlyArray<TestExecution> {
   const testCases = testSuite.testcase || [];
   return testCases.map((testCase) => {
-    const name = makeTestName(testCase, testSuite, testSuites);
+    const name = testCase.name ?? "";
+    const path = makeTestPath(testSuite, testSuites);
     const status = testCase.failure ? Status.FAILED : Status.PASSED;
 
-    return { name, status };
+    return { test: { name, path }, status };
   });
 }
 
-function makeTestName(
-  testCase: TestCase,
-  testSuite: TestSuite,
-  testSuites?: TestSuites
-) {
-  return [testSuites?.name, testSuite.name, testCase.name]
-    .filter(validSegment)
-    .join("/");
-}
-
-function validSegment(segment: string | undefined) {
-  return !!segment;
+function makeTestPath(testSuite: TestSuite, testSuites?: TestSuites): string[] {
+  return [testSuites?.name, testSuite.name].filter(
+    (segment) => segment !== undefined
+  ) as string[];
 }
 
 function isTestSuite(testSuite: unknown): testSuite is TestSuite {

@@ -1,7 +1,7 @@
-import { Command, Test, TestExecutor } from "../types";
+import { Command, TestExecution, TestExecutor } from "../types";
 
 const serial: TestExecutor = async (command, repeat, reporter) => {
-  const tests: Test[] = [];
+  const tests: TestExecution[] = [];
   for (let executionIndex = 0; executionIndex < repeat; executionIndex++) {
     try {
       await reporter.testSuiteStarted(executionIndex);

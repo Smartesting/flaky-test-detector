@@ -1,10 +1,10 @@
 import { exec } from "child_process";
 import { readFileSync } from "fs";
-import { CommandFactory, Test } from "./types";
+import { CommandFactory, TestExecution } from "./types";
 
 const commandFactory: CommandFactory = (options, reportParser) => {
   return async () => {
-    return new Promise<ReadonlyArray<Test>>((resolve) => {
+    return new Promise<ReadonlyArray<TestExecution>>((resolve) => {
       const testRun = exec(options.runTests);
 
       testRun.on("exit", () => {

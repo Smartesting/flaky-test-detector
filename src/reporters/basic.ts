@@ -1,4 +1,4 @@
-import { Logger, Reporter } from "../types";
+import { Logger, Reporter, Test } from "../types";
 
 export default class BasicReporter implements Reporter {
   constructor(private readonly logger: Logger) {}
@@ -11,7 +11,7 @@ export default class BasicReporter implements Reporter {
     this.logger.log(`Test suite #${index} ended`);
   }
 
-  async flakyTestsFound(flakyTests: ReadonlyArray<string>) {
+  async flakyTestsFound(flakyTests: ReadonlyArray<Test>) {
     const flakytestsCount = flakyTests.length;
     if (flakytestsCount === 0) {
       this.logger.log("No flaky tests found");
@@ -20,7 +20,7 @@ export default class BasicReporter implements Reporter {
 
     this.logger.error(`Found ${flakytestsCount} flaky tests`);
     for (const flakyTest of flakyTests) {
-      this.logger.error(` - ${flakyTest}`);
+      this.logger.error(` - ${flakyTest.name}`);
     }
   }
 }

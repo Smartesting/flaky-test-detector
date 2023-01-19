@@ -5,6 +5,11 @@ export enum Status {
 
 export type Test = {
   name: string;
+  path?: string[];
+};
+
+export type TestExecution = {
+  test: Test;
   status: Status;
 };
 
@@ -20,18 +25,20 @@ export type CommandFactory = (
   reportParser: ReportParser
 ) => Command;
 
-export type Command = () => Promise<ReadonlyArray<Test>>;
+export type Command = () => Promise<ReadonlyArray<TestExecution>>;
 
-export type ReportParser = (report: string) => Promise<ReadonlyArray<Test>>;
+export type ReportParser = (
+  report: string
+) => Promise<ReadonlyArray<TestExecution>>;
 
 export type FlakyTestDetector = (
-  tests: ReadonlyArray<Test>
-) => ReadonlyArray<string>;
+  testExecutions: ReadonlyArray<TestExecution>
+) => ReadonlyArray<Test>;
 
 export interface Reporter {
   testSuiteStarted: (index: number) => Promise<void>;
   testSuiteEnded: (index: number) => Promise<void>;
-  flakyTestsFound: (flakytests: ReadonlyArray<string>) => Promise<void>;
+  flakyTestsFound: (flakytests: ReadonlyArray<Test>) => Promise<void>;
 }
 
 export type Logger = {
@@ -43,4 +50,4 @@ export type TestExecutor = (
   command: Command,
   repeat: number,
   reporter: Reporter
-) => Promise<ReadonlyArray<Test>>;
+) => Promise<ReadonlyArray<TestExecution>>;

@@ -25,28 +25,28 @@ describe("parsers", () => {
         const tests = await junit(inlineXml(junitReport));
         assert.deepStrictEqual(tests, [
           {
-            name: "First test",
+            test: { name: "First test", path: [] },
             status: Status.PASSED,
           },
           {
-            name: "Second test",
+            test: { name: "Second test", path: [] },
             status: Status.FAILED,
           },
         ]);
       });
 
-      it("preprends the name of the test suite when available to avoid confusion", async () => {
+      it("adds the name of the test suite in the path", async () => {
         const junitReport = `<?xml version="1.0" encoding="UTF-8"?>
           ${makeTestSuiteXML(testResults, "Sample suite")}
         `;
         const tests = await junit(inlineXml(junitReport));
         assert.deepStrictEqual(tests, [
           {
-            name: "Sample suite/First test",
+            test: { name: "First test", path: ["Sample suite"] },
             status: Status.PASSED,
           },
           {
-            name: "Sample suite/Second test",
+            test: { name: "Second test", path: ["Sample suite"] },
             status: Status.FAILED,
           },
         ]);
@@ -63,11 +63,11 @@ describe("parsers", () => {
         const tests = await junit(inlineXml(junitReport));
         assert.deepStrictEqual(tests, [
           {
-            name: "First test",
+            test: { name: "First test", path: [] },
             status: Status.PASSED,
           },
           {
-            name: "Second test",
+            test: { name: "Second test", path: [] },
             status: Status.FAILED,
           },
         ]);
@@ -83,25 +83,25 @@ describe("parsers", () => {
         const tests = await junit(inlineXml(junitReport));
         assert.deepStrictEqual(tests, [
           {
-            name: "First test",
+            test: { name: "First test", path: [] },
             status: Status.PASSED,
           },
           {
-            name: "Second test",
+            test: { name: "Second test", path: [] },
             status: Status.FAILED,
           },
           {
-            name: "First test",
+            test: { name: "First test", path: [] },
             status: Status.PASSED,
           },
           {
-            name: "Second test",
+            test: { name: "Second test", path: [] },
             status: Status.FAILED,
           },
         ]);
       });
 
-      it("prefixes the testSuites name if available", async () => {
+      it("adds the testSuites name to the path if available", async () => {
         const junitReport = `<?xml version="1.0" encoding="UTF-8"?>
           <testsuites name="My test suites">
             ${makeTestSuiteXML(testResults, "First suite")}
@@ -111,19 +111,31 @@ describe("parsers", () => {
         const tests = await junit(inlineXml(junitReport));
         assert.deepStrictEqual(tests, [
           {
-            name: "My test suites/First suite/First test",
+            test: {
+              name: "First test",
+              path: ["My test suites", "First suite"],
+            },
             status: Status.PASSED,
           },
           {
-            name: "My test suites/First suite/Second test",
+            test: {
+              name: "Second test",
+              path: ["My test suites", "First suite"],
+            },
             status: Status.FAILED,
           },
           {
-            name: "My test suites/Second suite/First test",
+            test: {
+              name: "First test",
+              path: ["My test suites", "Second suite"],
+            },
             status: Status.PASSED,
           },
           {
-            name: "My test suites/Second suite/Second test",
+            test: {
+              name: "Second test",
+              path: ["My test suites", "Second suite"],
+            },
             status: Status.FAILED,
           },
         ]);
