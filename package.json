@@ -1,8 +1,33 @@
 {
   "author": "Smartesting",
-  "name": "@smartesting/flak-test-detector",
+  "name": "@smartesting/flaky-test-detector",
   "description": "KISS approach for flaky test detection",
+  "version": "0.1.0",
+  "keywords": [
+    "test",
+    "flaky-tests"
+  ],
+  "categories": [
+    "Testing"
+  ],
   "bin": "./bin/flaky-test-detector",
+  "exports": "./dist/src/index.js",
+  "types": "./dist/src/types.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Smartesting/flaky-test-detector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Smartesting/flaky-test-detector/issues"
+  },
+  "homepage": "https://github.com/Smartesting/flaky-test-detector#readme",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prepare": "husky install",
     "build": "tsc",

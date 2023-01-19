@@ -27,3 +27,20 @@ export type ReportParser = (report: string) => Promise<ReadonlyArray<Test>>;
 export type FlakyTestDetector = (
   tests: ReadonlyArray<Test>
 ) => ReadonlyArray<string>;
+
+export interface Reporter {
+  testSuiteStarted: (index: number) => Promise<void>;
+  testSuiteEnded: (index: number) => Promise<void>;
+  flakyTestsFound: (flakytests: ReadonlyArray<string>) => Promise<void>;
+}
+
+export type Logger = {
+  log: typeof console.log;
+  error: typeof console.error;
+};
+
+export type TestExecutor = (
+  command: Command,
+  repeat: number,
+  reporter: Reporter
+) => Promise<ReadonlyArray<Test>>;

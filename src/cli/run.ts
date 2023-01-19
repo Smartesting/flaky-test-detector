@@ -1,10 +1,11 @@
 import { exit } from "process";
-import basic from "../flakyTestDetectors/basic";
+import basicFlakyTestDetector from "../flakyTestDetectors/basic";
 import junit from "../parsers/junit";
 import { getOptions } from "./getOptions";
 import validateOptions from "./validateOptions";
-import flakyTestDetector from "../core/flakyTestDetector";
+import detectFlakyTests from "../core/detectFlakyTests";
 import commandFactory from "../commandFactory";
+import BasicReporter from "../reporters/basic";
 
 export default function run() {
   const options = getOptions();
@@ -14,16 +15,16 @@ export default function run() {
     exit(1);
   }
 
-  flakyTestDetector(options, commandFactory, junit, basic).then(
-    (flakyTests) => {
-      const flakytestsCount = flakyTests.length;
-      if (flakytestsCount === 0) {
-        exit(0);
-      } else {
-        console.log(`Found ${flakytestsCount} flaky tests`);
-        console.log(flakyTests.map((testName) => ` - ${testName}`).join("\n"));
-        exit(parseInt(options.exitCode));
-      }
-    }
-  );
+  const reporter = new BasicReporter(console);
+  detectFlakyTests(
+    options,
+    commandFactory,
+    junit,
+    basicFlakyTestDetector,
+    reporter
+  )
+    .then(() => exit(0))
+    .catch(() => {
+      exit(parseInt(options.exitCode));
+    });
 }

@@ -1,6 +1,6 @@
 import { FlakyTestDetector, Status, Test } from "../types";
 
-const basic: FlakyTestDetector = (tests: ReadonlyArray<Test>) => {
+const basic: FlakyTestDetector = (tests) => {
   const statusByName = groupTestStatusesByName(tests);
   return Object.entries(statusByName)
     .filter(([_name, statuses]) => uniq(statuses).length > 1)
