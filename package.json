@@ -14,7 +14,8 @@
   "exports": "./dist/src/index.js",
   "types": "./dist/src/types.d.ts",
   "files": [
-    "/dist"
+    "/dist",
+    "/bin/flaky-test-detector.js"
   ],
   "repository": {
     "type": "git",
@@ -31,11 +32,13 @@
   "scripts": {
     "prepare": "husky install",
     "build": "tsc",
+    "build:lib": "tsc --project tsconfig.lib.json",
     "test": "mocha",
     "test:samples": "mocha --config .mocharc-samples.json --reporter mocha-junit-reporter",
     "test:acceptance": "ts-node bin/flaky-test-detector.ts --run-tests \"npm run test:samples\" --test-output-file=./test-results.xml",
     "prettier:check": "prettier --check .",
-    "prettier:write": "prettier --write ."
+    "prettier:write": "prettier --write .",
+    "prepublishOnly": "npm run build:lib && npm test"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
