@@ -19,6 +19,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Fix path to executable
+
 ## [0.1.0](https://github.com/Smartesting/assert-contain-exactly/compare/904f61b4970af30387af2aa1db2efee990ac8ada...v0.1.0)
 
 ### Added

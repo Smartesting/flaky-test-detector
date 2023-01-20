@@ -15,7 +15,7 @@
   "types": "./dist/src/types.d.ts",
   "files": [
     "/dist",
-    "/bin/flaky-test-detector.js"
+    "/bin/flaky-test-detector"
   ],
   "repository": {
     "type": "git",
