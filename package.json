@@ -36,7 +36,7 @@
     "build:lib": "tsc --project tsconfig.lib.json",
     "test": "mocha",
     "test:samples": "mocha --config .mocharc-samples.json --reporter mocha-junit-reporter",
-    "test:acceptance": "ts-node bin/flaky-test-detector.ts --run-tests \"npm run test:samples\" --test-output-file=./test-results.xml",
+    "test:acceptance": "ts-node bin/flaky-test-detector.ts --run-tests \"npm run test:samples\" --test-output-file=./test-results.xml --test-output-format=junit",
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write .",
     "prepublishOnly": "npm run build:lib && npm test"
