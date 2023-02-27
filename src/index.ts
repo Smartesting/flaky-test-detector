@@ -1,3 +1,3 @@
-import detectFlakyTests from "./core/detectFlakyTests";
+import detectFlakyTests from './core/detectFlakyTests'
 
-export default detectFlakyTests;
+export default detectFlakyTests

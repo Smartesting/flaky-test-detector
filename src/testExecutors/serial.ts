@@ -1,21 +1,21 @@
-import { Command, TestExecution, TestExecutor } from "../types";
+import { TestExecution, TestExecutor } from '../types'
 
 const serial: TestExecutor = async (command, repeat, reporter) => {
-  const tests: TestExecution[] = [];
+  const tests: TestExecution[] = []
   for (let executionIndex = 0; executionIndex < repeat; executionIndex++) {
     try {
-      await reporter.testSuiteStarted(executionIndex);
-      const executed = await command();
+      await reporter.testSuiteStarted(executionIndex)
+      const executed = await command()
       await reporter.testSuiteEnded(
         executionIndex,
         executed.map((testExecution) => testExecution.status)
-      );
-      tests.push(...executed);
+      )
+      tests.push(...executed)
     } catch (err) {
       // TODO: is there anything to do here ?
     }
   }
-  return tests;
-};
+  return tests
+}
 
-export default serial;
+export default serial
