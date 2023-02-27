@@ -5,7 +5,7 @@ export function getOptions(): Options {
   program
     .name('flaky-test-detector')
     .description('Rerun tests suite to detect flaky tests')
-    .version('0.0.1')
+    .version('1.0.1')
 
   program
     .option(

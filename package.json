@@ -2,7 +2,7 @@
   "author": "Smartesting",
   "name": "@smartesting/flaky-test-detector",
   "description": "KISS approach for flaky test detection",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "test",
     "flaky-tests"
