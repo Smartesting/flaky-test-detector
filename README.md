@@ -21,13 +21,14 @@ Add a target in your `package.json` file:
 ```json
 {
   "scripts": {
-    "detectFlaky": "flaky-test-detector.ts --run-tests \"npm run test\" --test-output-file=./test-results.xml --repeat=5"
+    "detectFlaky": "flaky-test-detector.ts --run-tests \"npm run test\" --test-output-file=./test-results.xml --test-output-format=junit --repeat=5"
   }
 }
 ```
 
-The script takes three arguments:
+The script takes four arguments:
 
 - `run-tests`: the command used to execute the tests
-- `test-output`: the file in which the test runner will output the result. Only JUnit reports are supported for now
+- `test-output-file`: the file in which the test runner will output the result. Only JUnit reports are supported for now
+- `test-output-format`: the test result format of the test output file. Should be `junit`or `cucumberJson`
 - `repeat`: the number of time the tests will be executed
