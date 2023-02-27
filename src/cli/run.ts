@@ -1,6 +1,6 @@
 import { exit } from "process";
 import basicFlakyTestDetector from "../flakyTestDetectors/basic";
-import junit from "../parsers/junit";
+import junit from "../parsers/junit/junit";
 import { getOptions } from "./getOptions";
 import validateOptions, {
   SUPPORTED_TEST_OUTPUT_FORMATS,
@@ -9,7 +9,7 @@ import detectFlakyTests from "../core/detectFlakyTests";
 import commandFactory from "../commandFactory";
 import BasicReporter from "../reporters/basic";
 import { ReportParser } from "../types";
-import cucumberJson from "../parsers/cucumberJson";
+import cucumberJson from "../parsers/cucumberJson/cucumberJson";
 
 export default function run() {
   const options = getOptions();

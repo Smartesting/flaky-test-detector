@@ -1,0 +1,1435 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "view-a-session;henry-consults-a-session-after-receiving-user-actions",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Henry consults a session after receiving user actions",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 919000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Henry is authenticated",
+            "match": {
+              "location": "features\\support\\steps\\user.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 237000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["authToken", "domain", "subDomains"]
+                  },
+                  {
+                    "cells": ["1234", "example.com", "'', 'www', 'app'"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 6,
+            "name": "Henry has a usage session collection configured with:",
+            "match": {
+              "location": "features\\support\\steps\\session_collection.ts:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 70000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId", "page", "type"]
+                  },
+                  {
+                    "cells": ["session-a", "/home", "sessionStarted"]
+                  },
+                  {
+                    "cells": ["", "/home", "click"]
+                  },
+                  {
+                    "cells": ["", "/home", "click"]
+                  },
+                  {
+                    "cells": ["", "/product", "click"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "click"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 11,
+            "name": "the following sessions have been sent to Henry's usage session collection:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 159000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 18,
+            "name": "Henry consults the session with id \"session-a\" in his usage session collection",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:225"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 38000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "Henry should see the session visits 3 pages and has 4 user actions",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:305"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["page"]
+                  },
+                  {
+                    "cells": ["/home"]
+                  },
+                  {
+                    "cells": ["/product"]
+                  },
+                  {
+                    "cells": ["/checkout"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 20,
+            "name": "Henry should see the session visits the following pages:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:365"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 21000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@http-wip",
+            "line": 1
+          },
+          {
+            "name": "@dom",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "view-a-session;a-session-can-spread-across-multiple-domains",
+        "keyword": "Scenario",
+        "line": 26,
+        "name": "A session can spread across multiple domains",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 766000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Henry is authenticated",
+            "match": {
+              "location": "features\\support\\steps\\user.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 147000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["authToken", "domain", "subDomains"]
+                  },
+                  {
+                    "cells": ["1234", "example.com", "'', 'www', 'app'"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 6,
+            "name": "Henry has a usage session collection configured with:",
+            "match": {
+              "location": "features\\support\\steps\\session_collection.ts:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 44000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId", "page", "domain", "type"]
+                  },
+                  {
+                    "cells": [
+                      "session-a",
+                      "/home",
+                      "www.example.com",
+                      "sessionStarted"
+                    ]
+                  },
+                  {
+                    "cells": ["", "/home", "www.example.com", "click"]
+                  },
+                  {
+                    "cells": ["", "/home", "www.example.com", "click"]
+                  },
+                  {
+                    "cells": ["", "/product", "app.example.com", "click"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "app.example.com", "click"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 27,
+            "name": "the following sessions have been sent to Henry's usage session collection:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 126000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 34,
+            "name": "Henry consults the session with id \"session-a\" in his usage session collection",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:225"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 62000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 35,
+            "name": "Henry should see the session visits 3 pages and has 4 user actions",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:305"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["page", "domain"]
+                  },
+                  {
+                    "cells": ["/home", "www.example.com"]
+                  },
+                  {
+                    "cells": ["/product", "app.example.com"]
+                  },
+                  {
+                    "cells": ["/checkout2", "app.example.com"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 36,
+            "name": "Henry should see the session visits the following pages:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:365"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 4000000,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n\u001b[32m+ actual\u001b[39m \u001b[31m- expected\u001b[39m \u001b[34m...\u001b[39m Lines skipped\n\n  [\n    {\n\u001b[34m...\u001b[39m\n    {\n      domain: 'app.example.com',\n\u001b[32m+\u001b[39m     page: '/checkout'\n\u001b[31m-\u001b[39m     page: '/checkout2'\n    }\n  ]\n    + expected - actual\n\n         \"page\": \"/product\"\n       }\n       {\n         \"domain\": \"app.example.com\"\n    -    \"page\": \"/checkout\"\n    +    \"page\": \"/checkout2\"\n       }\n     ]\n\n    at World.<anonymous> (D:\\git\\gravity\\gravity-monorepo\\packages\\features\\features\\support\\steps\\session.ts:202:26)\n    at Generator.next (<anonymous>)\n    at D:\\git\\gravity\\gravity-monorepo\\packages\\features\\features\\support\\steps\\session.ts:8:71\n    at new Promise (<anonymous>)\n    at __awaiter (D:\\git\\gravity\\gravity-monorepo\\packages\\features\\features\\support\\steps\\session.ts:4:12)\n    at World.<anonymous> (D:\\git\\gravity\\gravity-monorepo\\packages\\features\\features\\support\\steps\\session.ts:185:12)"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 22000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@http-wip",
+            "line": 1
+          },
+          {
+            "name": "@dom",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "view-a-session",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "View a session",
+    "tags": [
+      {
+        "name": "@http-wip",
+        "line": 1
+      },
+      {
+        "name": "@dom",
+        "line": 1
+      }
+    ],
+    "uri": "features\\session-consult.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "get-coverage-of-an-existing-usage;only-sessions-covering-an-existing-usage-appear-on-this-usage-page;display-user-sessions",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "Display user sessions",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 751000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Daniel is authenticated",
+            "match": {
+              "location": "features\\support\\steps\\user.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 147000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "Daniel has a usage session collection configured with default domain",
+            "match": {
+              "location": "features\\support\\steps\\session_collection.ts:73"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["name", "pathname", "type", "selector"]
+                  },
+                  {
+                    "cells": ["checkout-cart", "/product", "click", ".details"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "", ""]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 12,
+            "name": "Daniel has the following usage:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId", "page", "type", "selector"]
+                  },
+                  {
+                    "cells": ["session-a", "/product", "click", ".details"]
+                  },
+                  {
+                    "cells": ["", "/review", "change", ".review"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "keyup", "#text"]
+                  },
+                  {
+                    "cells": ["session-b", "/review", "change", ".review"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 16,
+            "name": "the following sessions have been sent to Daniel's usage session collection:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 145000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "Daniel displays usage sessions covering the usage \"checkout-cart\"",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:237"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 124000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId"]
+                  },
+                  {
+                    "cells": ["session-a"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "Daniel should see the following covering usage sessions:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:494"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 22000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@http-wip",
+            "line": 1
+          },
+          {
+            "name": "@dom",
+            "line": 1
+          },
+          {
+            "name": "@dom-only",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "get-coverage-of-an-existing-usage;only-sessions-covering-an-existing-usage-appear-on-this-usage-page;display-test-sessions",
+        "keyword": "Scenario",
+        "line": 27,
+        "name": "Display test sessions",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 891000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Daniel is authenticated",
+            "match": {
+              "location": "features\\support\\steps\\user.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 150000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "Daniel has a usage session collection configured with default domain",
+            "match": {
+              "location": "features\\support\\steps\\session_collection.ts:73"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 43000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["name", "pathname", "type", "selector"]
+                  },
+                  {
+                    "cells": ["checkout-cart", "/product", "click", ".details"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "", ""]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 28,
+            "name": "Daniel has the following usage:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId", "page", "type", "selector"]
+                  },
+                  {
+                    "cells": ["session-a", "/product", "click", ".details"]
+                  },
+                  {
+                    "cells": ["", "/review", "change", ".review"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "keyup", "#text"]
+                  },
+                  {
+                    "cells": ["session-b", "/product", "change", ".details"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "", ""]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 32,
+            "name": "the following sessions have been sent to Daniel's test session collection:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 177000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 39,
+            "name": "Daniel displays test sessions covering the usage \"checkout-cart\"",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:237"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 78000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId"]
+                  },
+                  {
+                    "cells": ["session-a"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 40,
+            "name": "Daniel should see the following covering test sessions:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:494"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 21000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@http-wip",
+            "line": 1
+          },
+          {
+            "name": "@dom",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "get-coverage-of-an-existing-usage;the-covering-sessions-should-have-the-specified-traits;compute-coverage-of-usage-collection-according-to-traits-of-usage-scope",
+        "keyword": "Scenario",
+        "line": 46,
+        "name": "Compute coverage of usage collection according to traits of usage scope",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 777000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Daniel is authenticated",
+            "match": {
+              "location": "features\\support\\steps\\user.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 147000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "Daniel has a usage session collection configured with default domain",
+            "match": {
+              "location": "features\\support\\steps\\session_collection.ts:73"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 39000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["name", "pathname"]
+                  },
+                  {
+                    "cells": ["checkout-cart", "/product"]
+                  },
+                  {
+                    "cells": ["", "/checkout"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 47,
+            "name": "Daniel has the following usage:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 48000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId", "page", "traits"]
+                  },
+                  {
+                    "cells": ["session-a", "/product", "admin=true"]
+                  },
+                  {
+                    "cells": ["", "/checkout", ""]
+                  },
+                  {
+                    "cells": ["session-b", "/product", "productsInCart=3"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "admin=false"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 51,
+            "name": "the following sessions have been sent to Daniel's usage session collection:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 252000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["name", "value"]
+                  },
+                  {
+                    "cells": ["admin", "true"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 57,
+            "name": "Daniel has configured the usage scope with following traits:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:57"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 40000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 60,
+            "name": "Daniel displays usage sessions covering the usage \"checkout-cart\"",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:237"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 88000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId"]
+                  },
+                  {
+                    "cells": ["session-a"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 61,
+            "name": "Daniel should see the following covering usage sessions:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:494"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 22000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@http-wip",
+            "line": 1
+          },
+          {
+            "name": "@dom",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "get-coverage-of-an-existing-usage;the-covering-sessions-should-have-the-specified-traits;compute-coverage-of-test-collection-according-to-traits-of-test-scope",
+        "keyword": "Scenario",
+        "line": 65,
+        "name": "Compute coverage of test collection according to traits of test scope",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 837000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Daniel is authenticated",
+            "match": {
+              "location": "features\\support\\steps\\user.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 140000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "Daniel has a usage session collection configured with default domain",
+            "match": {
+              "location": "features\\support\\steps\\session_collection.ts:73"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["name", "pathname"]
+                  },
+                  {
+                    "cells": ["checkout-cart", "/product"]
+                  },
+                  {
+                    "cells": ["", "/checkout"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 66,
+            "name": "Daniel has the following usage:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 47000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId", "page", "traits"]
+                  },
+                  {
+                    "cells": ["session-a", "/product", "build=2"]
+                  },
+                  {
+                    "cells": ["", "/checkout", ""]
+                  },
+                  {
+                    "cells": ["session-b", "/product", "build=3"]
+                  },
+                  {
+                    "cells": ["", "/checkout", ""]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 70,
+            "name": "the following sessions have been sent to Daniel's test session collection:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 268000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["name", "value"]
+                  },
+                  {
+                    "cells": ["build", "3"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 76,
+            "name": "Daniel has configured the test scope with following traits:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:57"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 39000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 79,
+            "name": "Daniel displays test sessions covering the usage \"checkout-cart\"",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:237"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 93000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId"]
+                  },
+                  {
+                    "cells": ["session-b"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 80,
+            "name": "Daniel should see the following covering test sessions:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:494"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 33000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@http-wip",
+            "line": 1
+          },
+          {
+            "name": "@dom",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "get-coverage-of-an-existing-usage;the-covering-sessions-should-be-included-in-the-specified-time-range;compute-coverage-of-usage-collection-according-to-time-range-of-usage-scope",
+        "keyword": "Scenario",
+        "line": 86,
+        "name": "Compute coverage of usage collection according to time range of usage scope",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 761000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Daniel is authenticated",
+            "match": {
+              "location": "features\\support\\steps\\user.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 140000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "Daniel has a usage session collection configured with default domain",
+            "match": {
+              "location": "features\\support\\steps\\session_collection.ts:73"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 55000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["name", "pathname"]
+                  },
+                  {
+                    "cells": ["checkout-cart", "/product"]
+                  },
+                  {
+                    "cells": ["", "/checkout"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 87,
+            "name": "Daniel has the following usage:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId", "page", "recordedAt"]
+                  },
+                  {
+                    "cells": ["session-a", "/product", "2023-01-01T02:15Z"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "2023-01-01T02:18Z"]
+                  },
+                  {
+                    "cells": ["session-b", "/product", "2023-01-01T05:10Z"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "2023-01-01T05:12Z"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 91,
+            "name": "the following sessions have been sent to Daniel's usage session collection:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 217000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["start", "end"]
+                  },
+                  {
+                    "cells": ["2023-01-01T04:00Z", "2023-01-01T07:00Z"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 97,
+            "name": "Daniel has configured the usage scope with following time range:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:98"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 65000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 100,
+            "name": "Daniel displays usage sessions covering the usage \"checkout-cart\"",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:237"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 104000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId"]
+                  },
+                  {
+                    "cells": ["session-b"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 101,
+            "name": "Daniel should see the following covering usage sessions:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:494"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 30000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@http-wip",
+            "line": 1
+          },
+          {
+            "name": "@dom",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "get-coverage-of-an-existing-usage;the-covering-sessions-should-be-included-in-the-specified-time-range;compute-coverage-of-test-collection-according-to-time-range-of-test-scope",
+        "keyword": "Scenario",
+        "line": 105,
+        "name": "Compute coverage of test collection according to time range of test scope",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 802000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Daniel is authenticated",
+            "match": {
+              "location": "features\\support\\steps\\user.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 202000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "Daniel has a usage session collection configured with default domain",
+            "match": {
+              "location": "features\\support\\steps\\session_collection.ts:73"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["name", "pathname"]
+                  },
+                  {
+                    "cells": ["checkout-cart", "/product"]
+                  },
+                  {
+                    "cells": ["", "/checkout"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 106,
+            "name": "Daniel has the following usage:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 73000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId", "page", "recordedAt"]
+                  },
+                  {
+                    "cells": ["session-a", "/product", "2023-01-01T01:02Z"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "2023-01-01T01:03Z"]
+                  },
+                  {
+                    "cells": ["session-b", "/product", "2023-01-01T02:30Z"]
+                  },
+                  {
+                    "cells": ["", "/checkout", "2023-01-01T02:32Z"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 110,
+            "name": "the following sessions have been sent to Daniel's test session collection:",
+            "match": {
+              "location": "features\\support\\steps\\session.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 322000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["start", "end"]
+                  },
+                  {
+                    "cells": ["2023-01-01T02:00Z", "2023-01-01T03:00Z"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 116,
+            "name": "Daniel has configured the test scope with following time range:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:98"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 49000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 119,
+            "name": "Daniel displays test sessions covering the usage \"checkout-cart\"",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:237"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 105000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": ["sessionId"]
+                  },
+                  {
+                    "cells": ["session-b"]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 120,
+            "name": "Daniel should see the following covering test sessions:",
+            "match": {
+              "location": "features\\support\\steps\\usage.ts:494"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 32000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@http-wip",
+            "line": 1
+          },
+          {
+            "name": "@dom",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "get-coverage-of-an-existing-usage",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Get coverage of an existing usage",
+    "tags": [
+      {
+        "name": "@http-wip",
+        "line": 1
+      },
+      {
+        "name": "@dom",
+        "line": 1
+      }
+    ],
+    "uri": "features\\usage-coverage.feature"
+  }
+]

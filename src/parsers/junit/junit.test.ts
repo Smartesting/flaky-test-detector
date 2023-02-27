@@ -1,5 +1,5 @@
 import assert from "assert";
-import { Status } from "../types";
+import { Status } from "../../types";
 import junit from "./junit";
 
 describe("parsers", () => {

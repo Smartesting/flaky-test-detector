@@ -1,4 +1,4 @@
-import { ReportParser, Status, TestExecution } from "../types";
+import { ReportParser, Status, TestExecution } from "../../types";
 import { parse, TestSuite, TestSuites } from "junit2json";
 
 const junit: ReportParser = async (junitReport: string) => {
