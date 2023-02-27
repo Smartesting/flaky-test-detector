@@ -17,6 +17,7 @@ export type Options = {
   repeat: string;
   runTests: string;
   testOutputFile: string;
+  testOutputFormat: string;
   exitCode: string;
 };
 

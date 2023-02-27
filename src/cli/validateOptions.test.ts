@@ -21,6 +21,7 @@ describe("validateOptions", () => {
       validateOptions({
         runTests: "npm run tests",
         testOutputFile: "./test-results.xml",
+        testOutputFormat: "junit",
       }),
       OptionsValidationError.MissingRepeat
     );
@@ -31,6 +32,7 @@ describe("validateOptions", () => {
       validateOptions({
         runTests: "npm run tests",
         testOutputFile: "./test-results.xml",
+        testOutputFormat: "junit",
         repeat: "abcd",
       }),
       OptionsValidationError.InvalidRepeat
@@ -42,6 +44,7 @@ describe("validateOptions", () => {
       validateOptions({
         runTests: "npm run tests",
         testOutputFile: "./test-results.xml",
+        testOutputFormat: "junit",
         repeat: "12.33",
       }),
       OptionsValidationError.InvalidRepeat
@@ -53,6 +56,7 @@ describe("validateOptions", () => {
       validateOptions({
         runTests: "npm run tests",
         testOutputFile: "./test-results.xml",
+        testOutputFormat: "junit",
         repeat: "10",
       }),
       OptionsValidationError.MissingExitCode
@@ -64,6 +68,7 @@ describe("validateOptions", () => {
       validateOptions({
         runTests: "npm run tests",
         testOutputFile: "./test-results.xml",
+        testOutputFormat: "junit",
         repeat: "10",
         exitCode: "exitcode",
       }),
@@ -76,10 +81,36 @@ describe("validateOptions", () => {
       validateOptions({
         runTests: "npm run tests",
         testOutputFile: "./test-results.xml",
+        testOutputFormat: "junit",
         repeat: "10",
         exitCode: "3.14",
       }),
       OptionsValidationError.InvalidExitCode
+    );
+  });
+
+  it("returns OptionsValidationError.MissingTestOutputFormat when `testOutputFormat` is not present", () => {
+    assert.strictEqual(
+      validateOptions({
+        runTests: "npm run tests",
+        testOutputFile: "./test-results.xml",
+        exitCode: "0",
+        repeat: "10",
+      }),
+      OptionsValidationError.MissingTestOutputFormat
+    );
+  });
+
+  it("returns OptionsValidationError.InvalidTestOutputFormat when `testOutputFormat` is not supported", () => {
+    assert.strictEqual(
+      validateOptions({
+        runTests: "npm run tests",
+        testOutputFile: "./test-results.xml",
+        testOutputFormat: "polop",
+        repeat: "10",
+        exitCode: "0",
+      }),
+      OptionsValidationError.InvalidTestOutputFormat
     );
   });
 
@@ -88,6 +119,7 @@ describe("validateOptions", () => {
       validateOptions({
         runTests: "npm run tests",
         testOutputFile: "./test-results.xml",
+        testOutputFormat: "junit",
         repeat: "12",
         exitCode: "1",
       }),

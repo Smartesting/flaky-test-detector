@@ -2,10 +2,14 @@ import { exit } from "process";
 import basicFlakyTestDetector from "../flakyTestDetectors/basic";
 import junit from "../parsers/junit";
 import { getOptions } from "./getOptions";
-import validateOptions from "./validateOptions";
+import validateOptions, {
+  SUPPORTED_TEST_OUTPUT_FORMATS,
+} from "./validateOptions";
 import detectFlakyTests from "../core/detectFlakyTests";
 import commandFactory from "../commandFactory";
 import BasicReporter from "../reporters/basic";
+import { ReportParser } from "../types";
+import cucumberJson from "../parsers/cucumberJson";
 
 export default function run() {
   const options = getOptions();
@@ -19,7 +23,7 @@ export default function run() {
   detectFlakyTests(
     options,
     commandFactory,
-    junit,
+    getReportParser(options.testOutputFormat),
     basicFlakyTestDetector,
     reporter
   )
@@ -27,4 +31,14 @@ export default function run() {
     .catch(() => {
       exit(parseInt(options.exitCode));
     });
+}
+
+function getReportParser(testOutputFormat: string): ReportParser {
+  switch (testOutputFormat) {
+    case SUPPORTED_TEST_OUTPUT_FORMATS.JUNIT:
+      return junit;
+    case SUPPORTED_TEST_OUTPUT_FORMATS.CUCUMBER_JSON:
+      return cucumberJson;
+  }
+  throw new Error("Invalid output format");
 }

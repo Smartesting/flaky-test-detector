@@ -32,6 +32,7 @@
   "scripts": {
     "prepare": "husky install",
     "build": "tsc",
+    "tsc-watch": "tsc --watch",
     "build:lib": "tsc --project tsconfig.lib.json",
     "test": "mocha",
     "test:samples": "mocha --config .mocharc-samples.json --reporter mocha-junit-reporter",

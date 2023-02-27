@@ -22,6 +22,7 @@ describe("commandFactory", () => {
       {
         repeat: "",
         exitCode: "",
+        testOutputFormat: "junit",
         runTests: `./bin/test-utils/sleep 200 > ${testOutputFile}`,
         testOutputFile,
       },
@@ -42,6 +43,7 @@ describe("commandFactory", () => {
       {
         repeat: "",
         exitCode: "",
+        testOutputFormat: "junit",
         runTests: `./bin/test-utils/sleep 200 > ${testOutputFile}`,
         testOutputFile,
       },
@@ -65,6 +67,7 @@ describe("commandFactory", () => {
       {
         repeat: "",
         exitCode: "",
+        testOutputFormat: "junit",
         runTests: `./bin/test-utils/sleep 200 > ${testOutputFile}`,
         testOutputFile,
       },
